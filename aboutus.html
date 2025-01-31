@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Asta Epsilon Group</title>
+    <link rel="icon" type="image/x-icon" href="AE Logo 3 Transparent.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* General Styles */
+      body {
+        font-family: "Bahnschrift Light", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("pexels-pixabay-209251.jpg"); /* Background Image */
+        background-size: cover;
+        background-position: center;
+        color: white;
+        animation: fadeIn 1s ease-out;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Header Styles */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #41044a;
+        padding: 20px;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo {
+        width: 50px;
+        height: auto;
+      }
+
+      .site-name {
+        margin-left: 10px;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-left: 20px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      /* Interactive Section */
+      .interactive-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+      }
+
+      .interactive-box {
+        width: 80%;
+        max-width: 800px;
+        background-color: rgba(65, 4, 74, 0.8);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        opacity: 0;
+        transition: opacity 1s ease-out;
+      }
+
+      body.loaded .interactive-box {
+        opacity: 1;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .nav-buttons button {
+        background-color: #ffffff;
+        color: #41044a;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      .nav-buttons button:hover {
+        background-color: #ccc;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #41044a;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img src="AE Logo 3 Transparent.png" alt="AE Logo" class="logo" />
+        <a href="index.html" class="site-name">astaepsilon.com</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="aboutus.html#about">About Us</a></li>
+          <li class="dropdown">
+            <a href="#" class="no-underline">Products & Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="aepower.html">Asta Epsilon Power</a></li>
+              <li>
+                <a href="aeconsultancies.html">Asta Epsilon Consultancies</a>
+              </li>
+              <li><a href="aechemicals.html">Asta Epsilon Chemicals</a></li>
+            </ul>
+          </li>
+          <li><a href="future.html">Future Endeavours</a></li>
+          <li><a href="database.html">Company Database</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Interactive Section -->
+    <div class="interactive-container">
+      <div class="interactive-box">
+        <h2 id="section-title">Our Mission</h2>
+        <p id="section-text">
+          Our mission is to deliver high-quality products and services that meet
+          the evolving needs of our customers while promoting sustainable
+          practices and environmental stewardship.
+        </p>
+        <div class="nav-buttons">
+          <button id="prev">⟵ Prev</button>
+          <button id="next">Next ⟶</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Asta Epsilon Group. All rights reserved.</p>
+    </footer>
+
+    <script>
+      let sections = [
+        {
+          title: "Our Mission",
+          text: "Our mission is to deliver high-quality products and services that meet the evolving needs of our customers while promoting sustainable practices and environmental stewardship.",
+        },
+        {
+          title: "Our Vision",
+          text: "Our vision is to create a better future by harnessing the power of technology and innovation. We aim to build a sustainable world where businesses and communities thrive.",
+        },
+        {
+          title: "Our Values",
+          text: "Integrity, Innovation, Sustainability, Excellence, and Collaboration define our core values, guiding our decisions and ensuring that we create meaningful change in every project we undertake.",
+        },
+      ];
+
+      let currentIndex = 0;
+      const titleElement = document.getElementById("section-title");
+      const textElement = document.getElementById("section-text");
+
+      document.getElementById("next").addEventListener("click", function () {
+        currentIndex = (currentIndex + 1) % sections.length;
+        updateContent();
+      });
+
+      document.getElementById("prev").addEventListener("click", function () {
+        currentIndex = (currentIndex - 1 + sections.length) % sections.length;
+        updateContent();
+      });
+
+      function updateContent() {
+        titleElement.textContent = sections[currentIndex].title;
+        textElement.textContent = sections[currentIndex].text;
+      }
+
+      document.body.classList.add("loaded");
+    </script>
+  </body>
+</html>

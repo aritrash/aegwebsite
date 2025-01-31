@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Future Endeavours - Asta Epsilon Group</title>
+    <link rel="icon" type="image/x-icon" href="AE Logo 3 Transparent.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Slideshow */
+      .slideshow-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .slide {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      /* Interactive Box */
+      .interactive-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+      }
+
+      .interactive-box {
+        width: 80%;
+        max-width: 800px;
+        background-color: rgba(65, 4, 74, 0.8);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        opacity: 0;
+        transition: opacity 1s ease-out;
+      }
+
+      body.loaded .interactive-box {
+        opacity: 1;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .nav-buttons button {
+        background-color: #ffffff;
+        color: #41044a;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      .nav-buttons button:hover {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img src="AE Logo 3 Transparent.png" alt="AE Logo" class="logo" />
+        <a href="index.html" class="site-name">astaepsilon.com</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="aboutus.html" class="no-underline">About Us</a></li>
+          <li class="dropdown">
+            <a href="#" class="no-underline">Products & Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="aepower.html">Asta Epsilon Power</a></li>
+              <li>
+                <a href="aeconsultancies.html">Asta Epsilon Consultancies</a>
+              </li>
+              <li><a href="aechemicals.html">Asta Epsilon Chemicals</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="future.html" class="no-underline">Future Endeavours</a>
+          </li>
+          <li><a href="database.html" class="no-underline">Company Database</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Slideshow Background -->
+    <div class="slideshow-container">
+      <img src="pexels-lich-8803230.jpg" class="slide" />
+      <img src="pexels-pixabay-159298.jpg" class="slide" />
+      <img
+        src="solar-cell-farm-power-station-alternative-energy-from-sun.jpg"
+        class="slide"
+      />
+      <img
+        src="beautiful-grassy-field-with-windmills-distance-blue-sky.jpg"
+        class="slide"
+      />
+    </div>
+
+    <!-- Interactive Section -->
+    <div class="interactive-container">
+      <div class="interactive-box">
+        <h2 id="section-title">Asta Epsilon Finance</h2>
+        <p id="section-text">
+          Asta Epsilon Finance will focus on stock investments, mutual funds,
+          SIPs, and insurance, helping individuals and businesses make informed
+          financial decisions.
+        </p>
+        <div class="nav-buttons">
+          <button id="prev">⟵ Prev</button>
+          <button id="next">Next ⟶</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <img
+          src="AE Logo 3 Transparent.png"
+          alt="AE Logo"
+          class="footer-logo"
+        />
+        <span class="footer-site-name">astaepsilon.com</span>
+        <nav>
+          <ul>
+            <li><a href="#top">Back to Top</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p>&copy; 2025 Asta Epsilon Group. All rights reserved.</p>
+    </footer>
+
+    <script>
+      let sections = [
+        {
+          title: "Asta Epsilon Finance",
+          text: "Asta Epsilon Finance will focus on stock investments, mutual funds, SIPs, and insurance, helping individuals and businesses make informed financial decisions.",
+        },
+        {
+          title: "Asta Epsilon Chemicals",
+          text: "Asta Epsilon Chemicals aims to revolutionize the industrial sector by producing fertilizers, hydrogen fuel, ammonia, and advanced chemical compounds for a sustainable future.",
+        },
+        {
+          title: "Asta Epsilon Energy",
+          text: "Asta Epsilon Energy will focus on renewable power sources including solar, wind, and hydrogen-based energy solutions, contributing to a greener and cleaner environment.",
+        },
+        {
+          title: "Asta Epsilon Mobility",
+          text: "Asta Epsilon Mobility will focus on electric vehicles, charging stations, and smart transportation solutions, promoting sustainable and efficient mobility options.",
+        },
+        {
+          title: "Asta Epsilon Steel",
+          text: "Asta Epsilon Steel will focus on producing high-quality steel for construction, automotive, and industrial applications, contributing to the infrastructure development of the nation.",
+        },
+        {
+          title: "Asta Epsilon Cement",
+          text: "Asta Epsilon Cement aims to produce eco-friendly cement for construction projects, reducing the carbon footprint and promoting sustainable building practices.",
+        },
+        {
+          title: "Asta Epsilon Electronics",
+          text: "Asta Epsilon Electronics will focus on manufacturing consumer electronics, IoT devices, and smart home solutions, enhancing the digital lifestyle of individuals and businesses.",
+        },
+        {
+          title: "Asta Epsilon Logistics",
+          text: "Asta Epsilon Logistics will focus on supply chain management, warehousing, and transportation services, ensuring efficient and timely delivery of goods across the nation.",
+        },
+      ];
+
+      let currentIndex = 0;
+      const titleElement = document.getElementById("section-title");
+      const textElement = document.getElementById("section-text");
+
+      document.getElementById("next").addEventListener("click", function () {
+        currentIndex = (currentIndex + 1) % sections.length;
+        updateContent();
+      });
+
+      document.getElementById("prev").addEventListener("click", function () {
+        currentIndex = (currentIndex - 1 + sections.length) % sections.length;
+        updateContent();
+      });
+
+      function updateContent() {
+        titleElement.textContent = sections[currentIndex].title;
+        textElement.innerHTML = sections[currentIndex].text;
+      }
+
+      document.body.classList.add("loaded");
+
+      // Slideshow Script
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".slide");
+
+      function showSlides() {
+        for (let i = 0; i < slides.length; i++) {
+          slides[i].style.opacity = "0";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.opacity = "1";
+        setTimeout(showSlides, 5000); // Change image every 5 seconds
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlides();
+      });
+    </script>
+  </body>
+</html>

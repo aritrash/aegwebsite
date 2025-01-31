@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Asta Epsilon Group</title>
+    <link rel="icon" type="image/x-icon" href="AE Logo 3 Transparent.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Sign-Up Page Styles */
+      .signup-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 7% auto;
+        padding: 20px;
+        background: white;
+        color: black;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .signup-container h2 {
+        margin-bottom: 20px;
+        color: #41044a;
+      }
+
+      .signup-container input {
+        width: 90%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .signup-container button {
+        width: 100%;
+        background: linear-gradient(to right, #3a0ca3, #7209b7);
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .signup-container button:hover {
+        background: linear-gradient(to right, #5b09a3, #9b07d1);
+      }
+
+      .login-link {
+        margin-top: 15px;
+        display: block;
+        font-size: 0.9rem;
+        color: #3a0ca3;
+        text-decoration: none;
+      }
+
+      .login-link:hover {
+        text-decoration: underline;
+      }
+
+      /* Password toggle */
+      .password-container {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+
+      .password-container input {
+        width: 100%;
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #555;
+      }
+
+      /* Error Message */
+      .error {
+        color: red;
+        font-size: 0.9rem;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img src="AE Logo 3 Transparent.png" alt="AE Logo" class="logo" />
+        <a href="index.html" class="site-name">astaepsilon.com</a>
+      </div>
+    </header>
+
+    <div class="signup-container">
+      <h2>Create Your Account</h2>
+      <form onsubmit="return validateSignup(event)">
+        <input type="text" id="fullName" placeholder="Full Name" required />
+        <input type="email" id="email" placeholder="Email Address" required />
+        <input type="text" id="username" placeholder="Username" required />
+
+        <div class="password-container">
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
+
+        <input
+          type="text"
+          id="companyPin"
+          placeholder="Enter 4-digit Company PIN"
+          maxlength="4"
+          pattern="[0-9]{4}"
+          required
+        />
+
+        <p id="error-message" class="error">
+          Invalid PIN or weak password. Try again.
+        </p>
+
+        <button type="submit">Sign Up</button>
+      </form>
+      <a href="login.html" class="login-link"
+        >Already have an account? Log in</a
+      >
+    </div>
+
+    <script>
+      const fixedCompanyPin = "2925"; // SET YOUR COMPANY PIN HERE
+
+      function validateSignup(event) {
+        event.preventDefault();
+        const fullName = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
+        const companyPin = document.getElementById("companyPin").value;
+        const errorMessage = document.getElementById("error-message");
+
+        // Password strength check
+        const strongPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+        if (companyPin !== fixedCompanyPin || !strongPassword.test(password)) {
+          errorMessage.style.display = "block";
+        } else {
+          // Redirect to login page after successful sign-up
+          window.location.href = "login.html";
+        }
+      }
+
+      function togglePassword() {
+        const passwordField = document.getElementById("password");
+        passwordField.type =
+          passwordField.type === "password" ? "text" : "password";
+      }
+    </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCgYGrObRpU0TJwcbFaraWW5w_3novY-Cg",
+          authDomain: "ae-website-da5b9.firebaseapp.com",
+          projectId: "ae-website-da5b9",
+          storageBucket: "ae-website-da5b9.firebasestorage.app",
+          messagingSenderId: "1069510213739",
+          appId: "1:1069510213739:web:6995a70574803f5b13712e",
+          measurementId: "G-LJBYW70X93"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+    <form onsubmit="return signup(event)">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+        <p id="signupError" style="color: red; display: none;">Error signing up.</p>
+    </form>
+    
+    <script type="module">
+      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    
+      function signup(event) {
+          event.preventDefault();
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const auth = getAuth();
+    
+          createUserWithEmailAndPassword(auth, email, password)
+              .then(() => {
+                  alert("Sign-up successful! Redirecting to login...");
+                  window.location.href = "login.html";
+              })
+              .catch((error) => {
+                  document.getElementById("signupError").textContent = error.message;
+                  document.getElementById("signupError").style.display = "block";
+              });
+      }
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asta Epsilon Chemicals</title>
+    <link rel="icon" type="image/x-icon" href="AE Logo 3 Transparent.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Slideshow */
+      .slideshow-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .slide {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      /* Main Content */
+      .content-container {
+        position: relative;
+        text-align: center;
+        margin-top: 120px; /* Pushes content below header */
+      }
+
+      /* Asta Epsilon POWER Box */
+      .brand-box {
+        background: white;
+        padding: 30px 60px;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .brand-box h1 {
+        font-family: "Bahnschrift", sans-serif;
+        font-size: 2.5rem;
+        color: #333;
+        margin: 0;
+      }
+
+      .brand-box .line {
+        width: 2px;
+        height: 50px;
+        background-color: #333;
+        margin: 0 15px;
+      }
+
+      .brand-box h2 {
+        font-family: "Bahnschrift", sans-serif;
+        font-size: 2rem;
+        color: #7209b7;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      /* Explore Categories */
+      .categories-container {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .category {
+        background: white;
+        width: 300px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .category img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .category h3 {
+        margin-top: 15px;
+        font-size: 1.5rem;
+        color: #333;
+        font-family: "Bahnschrift", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img src="AE Logo 3 Transparent.png" alt="AE Logo" class="logo" />
+        <a href="index.html" class="site-name">astaepsilon.com</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="aboutus.html" class="no-underline">About Us</a></li>
+          <li class="dropdown">
+            <a href="#" class="no-underline">Products & Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="aepower.html">Asta Epsilon Power</a></li>
+              <li>
+                <a href="aeconsultancies.html">Asta Epsilon Consultancies</a>
+              </li>
+              <li>
+                <a href="aechemicals.html">Asta Epsilon Chemicals</a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="future.html" class="no-underline">Future Endeavours</a></li>
+          <li><a href="database.html" class="no-underline">Company Database</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Slideshow Background -->
+    <div class="slideshow-container">
+      <img src="pexels-pixabay-162646.jpg" class="slide" />
+      <img src="green-wheat-field-landscape.jpg" class="slide" />
+      <img
+        src="beautiful-grassy-field-with-windmills-distance-blue-sky.jpg"
+        class="slide"
+      />
+      <img
+        src="view-nuclear-power-plant-with-towers-letting-out-steam-from-process.jpg"
+        class="slide"
+      />
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-container">
+      <!-- Asta Epsilon CHEMICALS Box -->
+      <div class="brand-box">
+        <h1>astaepsilon</h1>
+        <div class="line"></div>
+        <h2>CHEMICALS</h2>
+      </div>
+
+      <!-- Explore Categories -->
+      <h2 style="margin-top: 40px; font-size: 2rem">Explore Categories</h2>
+      <div class="categories-container">
+        <div class="category">
+          <img src="SOEC.jpg" alt="Solid Oxide Electrolysis Cell" />
+          <h3>Solid Oxide Electrolysis Cell</h3>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <img
+          src="AE Logo 3 Transparent.png"
+          alt="AE Logo"
+          class="footer-logo"
+        />
+        <span class="footer-site-name">astaepsilon.com</span>
+        <nav>
+          <ul>
+            <li><a href="#top">Back to Top</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p>&copy; 2025 Asta Epsilon Group. All rights reserved.</p>
+    </footer>
+
+    <script>
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".slide");
+
+      function showSlides() {
+        for (let i = 0; i < slides.length; i++) {
+          slides[i].style.opacity = "0";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.opacity = "1";
+        setTimeout(showSlides, 5000); // Change image every 5 seconds
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlides();
+      });
+    </script>
+  </body>
+</html>
