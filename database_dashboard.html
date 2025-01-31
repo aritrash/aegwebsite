@@ -6,149 +6,59 @@
     <title>Company Database - Asta Epsilon Group</title>
     <link rel="icon" type="image/x-icon" href="AE Logo 3 Transparent.ico" />
     <link rel="stylesheet" href="styles.css" />
+
+    <script type="module">
+      // Import Firebase
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+      // Firebase Config - 🔒 Hide API keys using Firebase Functions or Environment Variables
+      const firebaseConfig = {
+        apiKey: "AIzaSy***************", // 🔒 Hide this in env variables
+        authDomain: "ae-website-da5b9.firebaseapp.com",
+        projectId: "ae-website-da5b9",
+        storageBucket: "ae-website-da5b9.firebasestorage.app",
+        messagingSenderId: "1069510213739",
+        appId: "1:1069510213739:web:6995a70574803f5b13712e",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Restrict Page Access - Redirect Unauthorized Users to Login
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          alert("Unauthorized access! Redirecting to login...");
+          window.location.href = "login.html";
+        }
+      });
+
+      // Logout Function
+      window.logout = function () {
+        signOut(auth).then(() => {
+          alert("Logged out successfully!");
+          window.location.href = "login.html";
+        });
+      };
+    </script>
+
     <style>
-      /* General Styles */
-      body {
-        margin: 0;
-        font-family: "Bahnschrift Extralight", sans-serif;
-        background-color: #1a1a2e;
+      /* Logout Button */
+      .logout-btn {
+        background-color: red;
         color: white;
-      }
-
-      /* Header */
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: linear-gradient(to right, #3a0ca3, #7209b7);
-        padding: 15px 30px;
-      }
-
-      .logo-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .logo {
-        height: 50px;
-        margin-right: 10px;
-      }
-
-      .site-name {
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        text-decoration: none;
-      }
-
-      nav ul {
-        list-style: none;
-        display: flex;
-        padding: 0;
-        margin: 0;
-      }
-
-      nav ul li {
-        margin: 0 15px;
-        position: relative;
-      }
-
-      nav ul li a {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      /* Dashboard Styles */
-      .dashboard-container {
-        margin: 80px auto;
-        padding: 30px;
-        width: 80%;
-        max-width: 900px;
-        background-color: #2d2d4a;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      h2 {
-        text-align: center;
-        font-size: 2em;
-        margin-bottom: 30px;
-      }
-
-      /* Document List Styles */
-      .document-list {
-        list-style: none;
-        padding: 0;
-      }
-
-      .document-list li {
-        background-color: #3a0ca3;
-        color: white;
-        padding: 10px;
-        margin-bottom: 15px;
+        padding: 10px 15px;
+        border: none;
         border-radius: 5px;
-        transition: background-color 0.3s ease;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .document-list li:hover {
-        background-color: #7209b7;
-      }
-
-      .document-link {
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        flex-grow: 1;
-      }
-
-      .document-actions {
-        display: flex;
-        justify-content: flex-start;
-        width: auto;
-        gap: 10px; /* Adds space between buttons */
-      }
-
-      .document-actions button {
-        background-color: transparent;
-        border: 1px solid white;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
+        font-size: 1em;
         cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 30px;
       }
-
-      .document-actions button:hover {
-        background-color: white;
-        color: #2d2d4a;
-      }
-
-      /* Footer Styles */
-      footer {
-        background: linear-gradient(to right, #3a0ca3, #7209b7);
-        text-align: center;
-        padding: 20px;
-        margin-top: 30px;
-      }
-
-      .footer-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .footer-logo {
-        height: 40px;
-        margin-right: 10px;
-      }
-
-      .footer-site-name {
-        font-size: 1.2em;
-        color: white;
-        margin-right: 10px;
+      .logout-btn:hover {
+        background-color: darkred;
       }
     </style>
   </head>
@@ -161,135 +71,33 @@
       </div>
       <nav>
         <ul>
-          <li><a href="aboutus.html" class="no-underline">About Us</a></li>
-          <li class="dropdown">
-            <a href="#" class="no-underline">Products & Services</a>
-            <ul class="dropdown-menu">
-              <li><a href="aepower.html">Asta Epsilon Power</a></li>
-              <li>
-                <a href="aeconsultancies.html">Asta Epsilon Consultancies</a>
-              </li>
-              <li><a href="aechemicals.html">Asta Epsilon Chemicals</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="future.html" class="no-underline">Future Endeavours</a>
-          </li>
-          <li>
-            <a href="database.html" class="no-underline">Company Database</a>
-          </li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="future.html">Future Endeavours</a></li>
+          <li><a href="database.html">Company Database</a></li>
         </ul>
       </nav>
+      <button class="logout-btn" onclick="logout()">Logout</button>
     </header>
 
     <!-- Dashboard Container -->
     <div class="dashboard-container">
       <h2>Company Documents</h2>
-
       <ul class="document-list">
-        <!-- Example Document List -->
         <li>
-          <a
-            href="AE Motor Switching Equipment.pdf"
-            class="document-link"
-            target="_blank"
-            >Motor Switching Equipment</a
-          >
+          <a href="docs/Motor_Switching.pdf" class="document-link" target="_blank">Motor Switching Equipment</a>
           <div class="document-actions">
-            <button
-              onclick="window.location.href='AE Motor Switching Equipment.pdf'"
-            >
-              View
-            </button>
-            <button
-              onclick="window.location.href='AE Motor Switching Equipment.pdf'"
-            >
-              Download
-            </button>
+            <button onclick="window.location.href='docs/Motor_Switching.pdf'">View</button>
+            <button onclick="window.location.href='docs/Motor_Switching.pdf'">Download</button>
           </div>
         </li>
-        <li>
-          <a href="AE1000I354.pdf" class="document-link" target="_blank"
-            >1000 kW 3PIM</a
-          >
-          <div class="document-actions">
-            <button onclick="window.location.href='AE1000I354.pdf'">
-              View
-            </button>
-            <button onclick="window.location.href='AE1000I354.pdf'">
-              Download
-            </button>
-          </div>
-        </li>
-        <li>
-          <a href="SOEC.pdf" class="document-link" target="_blank"
-            >SOEC Research (Patent Required)</a
-          >
-          <div class="document-actions">
-            <button onclick="window.location.href='SOEC.pdf'">View</button>
-            <button onclick="window.location.href='SOEC.pdf'">
-              Download
-            </button>
-          </div>
-        </li>
-        <li>
-          <a
-            href="Comprehensive Business Model.pdf"
-            class="document-link"
-            target="_blank"
-            >Comprehensive Business Model</a
-          >
-          <div class="document-actions">
-            <button
-              onclick="window.location.href='Comprehensive Business Model.pdf'"
-            >
-              View
-            </button>
-            <button
-              onclick="window.location.href='Comprehensive Business Model.pdf'"
-            >
-              Download
-            </button>
-          </div>
-        </li>
-        <li>
-          <a
-            href="Solar Powered Street Lamps.pdf"
-            class="document-link"
-            target="_blank"
-            >Solar Powered Street Lamps</a
-          >
-          <div class="document-actions">
-            <button
-              onclick="window.location.href='Solar Powered Street Lamps.pdf'"
-            >
-              View
-            </button>
-            <button
-              onclick="window.location.href='Solar Powered Street Lamps.pdf'"
-            >
-              Download
-            </button>
-          </div>
-        </li>
-        <!-- Add more document entries here -->
       </ul>
     </div>
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer>
       <div class="footer-container">
-        <img
-          src="AE Logo 3 Transparent.png"
-          alt="AE Logo"
-          class="footer-logo"
-        />
+        <img src="AE Logo 3 Transparent.png" alt="AE Logo" class="footer-logo" />
         <span class="footer-site-name">astaepsilon.com</span>
-        <nav>
-          <ul>
-            <li><a href="#top">Back to Top</a></li>
-          </ul>
-        </nav>
       </div>
       <p>&copy; 2025 Asta Epsilon Group. All rights reserved.</p>
     </footer>
